@@ -23,3 +23,22 @@ let call = function () {
 
 loop(5, call);
 
+
+/**
+ *
+ * @param param1
+ * @param param2
+ * @returns {{params: string, square: string}}
+ */
+function calculateArea(param1, param2) {
+    let obj = {params: '', figure: 'Прямоугольник', square: ''};
+    let count_square = param1 * param2;
+    let inputParams = '';
+    inputParams = String(param1) + ',' + String(param2);
+    obj.params = inputParams;
+    obj.square = count_square;
+    console.log(obj);
+    return obj
+}
+
+calculateArea(6, 2);
