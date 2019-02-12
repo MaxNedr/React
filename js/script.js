@@ -45,35 +45,66 @@ calculateArea(6, 2);
 
 
 class Human {
-    constructor(name, age, dateOfBirth ){
+    constructor(name, age, dateOfBirth) {
         this.name = name;
         this.age = age;
-        this.dateOfBirth  = dateOfBirth ;
+        this.dateOfBirth = dateOfBirth;
     }
-     displayInfo(){
-        console.log(this.name, this.age, this.dateOfBirth, )
+
+    displayInfo() {
+        console.log(this.name, this.age, this.dateOfBirth,)
     }
 
 }
-class Employee extends Human{
-    constructor(name, age, dateOfBirth, salary, department ){
+
+class Employee extends Human {
+    constructor(name, age, dateOfBirth, salary, department) {
         super(name, age, dateOfBirth,);
         this.salary = salary;
         this.department = department;
     }
-    displayInfo(salary,department){
-        console.log(this.name, this.age, this.dateOfBirth, this.salary, this.department )
+
+    displayInfo(salary, department) {
+        super.displayInfo();
+        console.log(this.name, this.age, this.dateOfBirth, this.salary, this.department)
     }
-}
-
-class Developer extends Employee{
 
 }
-class Manager extends Employee{
 
+class Developer extends Employee {
+
+        manager = new Manager();
+
+
+
+}
+
+class Manager extends Employee {
+    myDevelopers = [];
+
+    addDeveloper(name) {
+        this.myDevelopers.push( name);
+        console.log('Сотрудник добавлен')
+    }
+
+    removeDeveloper(name) {
+        for (let i = 0; i < this.myDevelopers.length; i++) {
+            if (this.myDevelopers[i]=== name) {
+                console.log('сотрудник найден');
+                this.myDevelopers.splice(i, 1);
+                console.log('сотрудник удалён');
+            }
+        }
+    }
 }
 
 let hu = new Human('test', 23, 43453);
 hu.displayInfo();
-let ee = new Employee('test', 23, 43453, 500,'depart');
+let ee = new Employee('test', 23, 43453, 500, 'depart');
 ee.displayInfo();
+let man = new Manager('manager1', 25, 122334, 500, 'managers');
+console.log(man.myDevelopers);
+man.addDeveloper('igor');
+console.log(man.myDevelopers);
+man.removeDeveloper('igor');
+console.log(man.myDevelopers);
