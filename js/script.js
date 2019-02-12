@@ -72,10 +72,10 @@ class Employee extends Human {
 }
 
 class Developer extends Employee {
-
-        manager = new Manager();
-
-
+    constructor(name, age, dateOfBirth, salary, department, manager=null) {
+        super(name, age, dateOfBirth, salary, department);
+        this.manager = manager
+    }
 
 }
 
@@ -83,13 +83,13 @@ class Manager extends Employee {
     myDevelopers = [];
 
     addDeveloper(name) {
-        this.myDevelopers.push( name);
+        this.myDevelopers.push(name);
         console.log('Сотрудник добавлен')
     }
 
     removeDeveloper(name) {
         for (let i = 0; i < this.myDevelopers.length; i++) {
-            if (this.myDevelopers[i]=== name) {
+            if (this.myDevelopers[i] === name) {
                 console.log('сотрудник найден');
                 this.myDevelopers.splice(i, 1);
                 console.log('сотрудник удалён');
