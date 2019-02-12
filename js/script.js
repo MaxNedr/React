@@ -25,7 +25,7 @@ loop(5, call);
 
 
 /**
- *
+ *Второе задание
  * @param param1
  * @param param2
  * @returns {{params: string, square: string}}
@@ -42,3 +42,38 @@ function calculateArea(param1, param2) {
 }
 
 calculateArea(6, 2);
+
+
+class Human {
+    constructor(name, age, dateOfBirth ){
+        this.name = name;
+        this.age = age;
+        this.dateOfBirth  = dateOfBirth ;
+    }
+     displayInfo(){
+        console.log(this.name, this.age, this.dateOfBirth, )
+    }
+
+}
+class Employee extends Human{
+    constructor(name, age, dateOfBirth, salary, department ){
+        super(name, age, dateOfBirth,);
+        this.salary = salary;
+        this.department = department;
+    }
+    displayInfo(salary,department){
+        console.log(this.name, this.age, this.dateOfBirth, this.salary, this.department )
+    }
+}
+
+class Developer extends Employee{
+
+}
+class Manager extends Employee{
+
+}
+
+let hu = new Human('test', 23, 43453);
+hu.displayInfo();
+let ee = new Employee('test', 23, 43453, 500,'depart');
+ee.displayInfo();
