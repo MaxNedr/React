@@ -65,7 +65,6 @@ class Employee extends Human {
     }
 
     displayInfo() {
-        super.displayInfo();
         console.log(this.name, this.age, this.dateOfBirth, this.salary, this.department)
     }
 
@@ -143,4 +142,6 @@ man.addDeveloper(dev);
 dev.setManager(man);
 console.log(man);
 console.log(dev);
-
+console.log(man.arrayOfDevelopers);
+man.displayInfo();
+dev.displayInfo();
