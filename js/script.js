@@ -102,14 +102,14 @@ class Developer extends Employee {
 }
 
 class Manager extends Employee {
-    //Конструктора не было вообще, массив можно создать тут динамически. Вдруг менеджер вообще без девелоперов.
+
     constructor(...args) {
         super(args[0], args[1], args[2], args[3], args[4]);
         this.arrayOfDevelopers = [];
     }
 
     /**
-     * Добавить разработчика в массив к менеджеру (и вызвать добавление у раздаботчика тоже)
+     * Добавить разработчика в массив к менеджеру (и вызвать добавление у разработчика тоже)
      * @param develop {object} - экземпляр класса Developer
      */
     addDeveloper(develop) {
@@ -136,9 +136,11 @@ let hu = new Human('test', 23, 43453);
 hu.displayInfo();
 let ee = new Employee('test', 23, 43453, 500, 'depart');
 ee.displayInfo();
+
 let man = new Manager('manager1', 25, 122334, 500, 'managers');
-console.log(man.myDevelopers);
-man.addDeveloper('igor');
-console.log(man.myDevelopers);
-man.removeDeveloper('igor');
-console.log(man.myDevelopers);
+let dev = new Developer('igor', 21, 123456, 700, 'develop');
+man.addDeveloper(dev);
+dev.setManager(man);
+console.log(man);
+console.log(dev);
+
