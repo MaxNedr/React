@@ -52,7 +52,7 @@ class Human {
     }
 
     displayInfo() {
-        console.log(this.name, this.age, this.dateOfBirth,)
+        console.log(this.name, this.age, this.dateOfBirth)
     }
 
 }
@@ -64,7 +64,7 @@ class Employee extends Human {
         this.department = department;
     }
 
-    displayInfo(salary, department) {
+    displayInfo() {
         super.displayInfo();
         console.log(this.name, this.age, this.dateOfBirth, this.salary, this.department)
     }
@@ -72,28 +72,62 @@ class Employee extends Human {
 }
 
 class Developer extends Employee {
-    constructor(name, age, dateOfBirth, salary, department, manager=null) {
-        super(name, age, dateOfBirth, salary, department);
-        this.manager = manager
+    /**
+     * Установить/сменить менеджера(и вызвать добавление у менеджера тоже)
+     * @param manager {object} - экземпляр класса Manager
+     */
+    setManager(manager) {
+        if (manager instanceof Manager && this.mainManager !== manager) {
+            //Если уже есть менеджер, то нужно сначала от него удалить разработчика
+            if (this.mainManager) {
+                this.mainManager.delDeveloper(this);
+            }
+            //Теперь меняем менеджера и добавляем ему нашего разработчика
+            this.mainManager = manager;
+            manager.addDeveloper(this);
+        }
+    }
+
+    /**
+     * Удалить менеджера (и вызвать удаление у менеджера тоже)
+     * @param manager {object} - экземпляр класса Manager
+     */
+    delManager(manager) {
+        if (manager instanceof Manager) {
+            this.mainManager = null;
+            manager.delDeveloper(this);
+        }
     }
 
 }
 
 class Manager extends Employee {
-    myDevelopers = [];
-
-    addDeveloper(name) {
-        this.myDevelopers.push(name);
-        console.log('Сотрудник добавлен')
+    //Конструктора не было вообще, массив можно создать тут динамически. Вдруг менеджер вообще без девелоперов.
+    constructor(...args) {
+        super(args[0], args[1], args[2], args[3], args[4]);
+        this.arrayOfDevelopers = [];
     }
 
-    removeDeveloper(name) {
-        for (let i = 0; i < this.myDevelopers.length; i++) {
-            if (this.myDevelopers[i] === name) {
-                console.log('сотрудник найден');
-                this.myDevelopers.splice(i, 1);
-                console.log('сотрудник удалён');
-            }
+    /**
+     * Добавить разработчика в массив к менеджеру (и вызвать добавление у раздаботчика тоже)
+     * @param develop {object} - экземпляр класса Developer
+     */
+    addDeveloper(develop) {
+        if (develop instanceof Developer && this.arrayOfDevelopers.indexOf(develop) === -1) {
+            this.arrayOfDevelopers.push(develop);
+            develop.setManager(this);
+        }
+    }
+
+    /**
+     * Удалить разработчика из массива менеджера (и вызвать удаление у раздаботчика тоже)
+     * @param develop {object} - экземпляр класса Developer
+     */
+    delDeveloper(develop) {
+        let idx = this.arrayOfDevelopers.indexOf(develop);
+        if (develop instanceof Developer && idx !== -1) {
+            this.arrayOfDevelopers.splice(idx, 1);
+            develop.delManager(this);
         }
     }
 }
