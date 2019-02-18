@@ -1,5 +1,5 @@
 .user {
-    width: 200px;
-    height: 200px;
+    width: max-content;
+    height: max-content;
     background-color: aquamarine;
 }
