@@ -1,0 +1,8 @@
+.user {
+    width: max-content;
+    height: max-content;
+    background-color: aquamarine;
+}
+.bot   {
+    float:right;
+}
