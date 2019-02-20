@@ -39,15 +39,15 @@ export default class MessageField extends React.Component {
         this.setState({[e.target.name]: e.target.value})
     };
 
+
     render() {
         const messages = this.state.messageList.map((messageId, index) =>
-            <Message key={`${messageId}_${index}`} message={this.state.messages[messageId].message} sender={''}/>);
+            <Message key={`${messageId}_${index}`} message={this.state.messages[messageId].message} sender={this.state.messages[messageId].sender}/>);
 
         return (
             <div>
                 {this.state.messages.length === 0 &&
                 <div style={{opacity: 0.5}}>Пока нет ни одного сообщения</div>}
-                {/*{this.state.curId!=="bot" &&  <div className={'bot'}>{messages}</div> }*/}
                 {messages}
                 <input name="input" value={this.state.input} onChange={this.handleInput}/>
                 <button onClick={this.handleSendMessage}>Отправить сообщение</button>
