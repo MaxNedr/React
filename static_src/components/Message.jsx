@@ -9,6 +9,6 @@ export default class Message extends React.Component {
     };
 
     render() {
-        return (<div>{ this.props.message }</div>)
+        return (<div className={ this.props.sender=== 'bot' ? 'bot' : 'user'}>{ this.props.message }</div>)
     }
 }

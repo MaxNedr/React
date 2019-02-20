@@ -45,7 +45,7 @@ export default class MessageField extends React.Component {
             <Message key={`${messageId}_${index}`} message={this.state.messages[messageId].message} sender={this.state.messages[messageId].sender}/>);
 
         return (
-            <div>
+            <div className={ 'wrapper'}>
                 {this.state.messages.length === 0 &&
                 <div style={{opacity: 0.5}}>Пока нет ни одного сообщения</div>}
                 {messages}
