@@ -15,7 +15,7 @@ export default class MessageField extends React.Component {
         const lastMessageId = this.state.messageList[this.state.messageList.length - 1];
         const lastMessageSender = this.state.messages[lastMessageId] ? this.state.messages[lastMessageId].sender : '';
         if (prevState.messageList.length < this.state.messageList.length && lastMessageSender === 'me') {
-            setTimeout(() => this.handleReplyMessage());
+            setTimeout(() => this.handleReplyMessage(), 2000);
         }
     };
 
@@ -32,7 +32,7 @@ export default class MessageField extends React.Component {
         messageList.push(this.state.curId);
         const messages = this.state.messages;
         messages[this.state.curId] = {sender: 'bot', message: 'Отстаньте от меня, кожаные убл*дки'};
-        setTimeout(() => this.setState({messageList, messages, input: '', curId: this.state.curId + 1}), 2000);
+         this.setState({messageList, messages, input: '', curId: this.state.curId + 1});
     };
 
     handleInput = (e) => {
