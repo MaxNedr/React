@@ -20,7 +20,7 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
+        /*new webpack.NoEmitOnErrorsPlugin(),*/
         new ExtractTextPlugin({ filename: 'style.css' }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'static_src', 'index.html'),
